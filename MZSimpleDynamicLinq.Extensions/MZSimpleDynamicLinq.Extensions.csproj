@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <Authors>Mahdi Zandakbari</Authors>
+    <Description>Adds extensions IQueryable so any implementing class could handle a linqDataRequest</Description>
+    <PackageProjectUrl>https://github.com/mzand111/MZSimpleDynamicLinq</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mzand111/MZSimpleDynamicLinq</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.19" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MZSimpleDynamicLinq.Core\MZSimpleDynamicLinq.Core.csproj" />
+  </ItemGroup>
+
+</Project>

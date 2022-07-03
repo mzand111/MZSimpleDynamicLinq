@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+    <Authors>Mahdi Zandakbari</Authors>
+    <Description>A simple library to define required paging, sorting and filtering in layers prior to data layer</Description>
+    <PackageProjectUrl>https://github.com/mzand111/MZSimpleDynamicLinq</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/mzand111/MZSimpleDynamicLinq</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+</Project>
