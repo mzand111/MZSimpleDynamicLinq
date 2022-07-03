@@ -8,7 +8,7 @@ namespace MZSimpleDynamicLinq.HttpRequestExtensions
 {
     public static class HttpRequestDataSourceExtension
     {
-        public static LinqDataRequest ToDataSourceRequest(this HttpRequest request)
+        public static LinqDataRequest ToLinqDataRequest(this HttpRequest request)
         {
 
             var draw = request.Query["draw"].FirstOrDefault();
