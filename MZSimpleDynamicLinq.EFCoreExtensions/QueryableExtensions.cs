@@ -43,8 +43,8 @@ namespace MZSimpleDynamicLinq.EFCoreExtensions
 
 			return new LinqDataResult<T>
 			{
-				data = await queryable.ToListAsync(),
-				recordsTotal = total,
+				Data = await queryable.ToListAsync(),
+				RecordsTotal = total,
 
 			};
 		}

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,8 +9,11 @@ namespace MZSimpleDynamicLinq.Core
 {
     public class LinqDataResult<T>
     {
-        public int recordsTotal { get; set; }
-        public int recordsFiltered { get; set; }
-        public IEnumerable<T> data { get; set; }
+        [DataMember(Name = "recordsTotal")]
+        public int RecordsTotal { get; set; }
+        [DataMember(Name = "recordsFiltered")]
+        public int RecordsFiltered { get; set; }
+        [DataMember(Name = "data")]
+        public IEnumerable<T> Data { get; set; }
     }
 }

@@ -42,8 +42,8 @@ namespace MZSimpleDynamicLinq.Extensions
 
 			return new LinqDataResult<T>
 			{
-				data = queryable.ToList(),
-				recordsTotal = total,
+				Data = queryable.ToList(),
+				RecordsTotal = total,
 
 			};
 		}
