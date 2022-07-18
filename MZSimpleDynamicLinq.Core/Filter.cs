@@ -13,31 +13,31 @@ namespace MZSimpleDynamicLinq.Core
         /// Name of the field for filtering. Value is expected to be <c>null</c> if the <c>Filters</c> property is set (So it is a combined filter).
         /// </summary>
         [DataMember(Name = "field")]
-        public string Field { get; set; }
+        public string? Field { get; set; }
 
         /// <summary>
         /// Gets or sets the filtering value. Value is expected to be <c>null</c> if the <c>Filters</c> property is set (So it is a combined filter).
         /// </summary>
         [DataMember(Name = "value")]
-        public object Value { get; set; }
+        public object? Value { get; set; }
 
         /// <summary>
         /// Gets or sets the filtering operator. Value is expected to be <c>null</c> if the <c>Filters</c> property is set (So it is a combined filter).
         /// </summary>
         [DataMember(Name = "operator")]
-        public string Operator { get; set; }
+        public string? Operator { get; set; }
 
         /// <summary>
         /// (Values: "and"/"or") Gets or sets the filtering logic. Should not br <c>null</c> if <c>Filters</c> is set.
         /// </summary>
         [DataMember(Name = "logic")]
-        public string Logic { get; set; }
+        public string? Logic { get; set; }
 
         /// <summary>
         /// Gets or sets the child filter expressions. Set to <c>null</c> if there are no child expressions.
         /// </summary>
         [DataMember(Name = "filters")]
-        public IEnumerable<Filter> Filters { get; set; }
+        public IEnumerable<Filter>? Filters { get; set; }
 
         /// <summary>
         /// Mapping of filtering operators to Dynamic Linq

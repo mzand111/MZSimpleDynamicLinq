@@ -20,11 +20,11 @@ namespace MZSimpleDynamicLinq.Core
         /// <summary>
         /// Specifies the requested sort order.
         /// </summary>
-        public IEnumerable<Sort> Sort { get; set; }
+        public IEnumerable<Sort>? Sort { get; set; }
 
         /// <summary>
         /// Specifies the requested filter.
         /// </summary>
-        public Filter Filter { get; set; }
+        public Filter? Filter { get; set; }
     }
 }
