@@ -48,7 +48,34 @@ namespace MZSimpleDynamicLinq.Extensions
 			};
 		}
 
-		
+		public static LinqDataResult<P> ToLinqDataResult<T,P>(this IQueryable<T> queryable, int take, int skip, IEnumerable<Sort> sort, Filter filter)
+			where T:P
+			
+		{
+			// Filter the data first
+			queryable = Filter(queryable, filter);
+
+			// Calculate the total number of records (needed for paging)
+			var total = queryable.Count();
+
+			// Sort the data
+			queryable = Sort(queryable, sort);
+
+			// Finally page the data
+			if (take > 0)
+			{
+				queryable = Page(queryable, take, skip);
+			}
+
+			return new LinqDataResult<P>
+			{
+				Data = queryable.ToList().Cast<P>(),
+				RecordsTotal = total,
+
+			};
+		}
+
+
 		private static IQueryable<T> Filter<T>(IQueryable<T> queryable, Filter filter)
 		{
 			if (filter != null && filter.Logic != null)
