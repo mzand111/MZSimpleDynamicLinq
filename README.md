@@ -17,4 +17,7 @@ Using this package will no more need to expose IQueryable and similar technology
 This provides you more control on what you are yielding from your services to the outside world.
 
 To get more familier you can watch a set of videos at youtube.com. 
+
+https://youtube.com/playlist?list=PL9FP4qaGhYYLs0WYRj0gqQPiRgXDDy_cW
+
 There I have explained the goal of this code and also how I have develped it and also a sample with jQuery datatable from datatables.net as the UI component.
