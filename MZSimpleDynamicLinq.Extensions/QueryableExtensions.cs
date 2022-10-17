@@ -25,11 +25,17 @@ namespace MZSimpleDynamicLinq.Extensions
 		/// <returns>A LinqDataResult object populated from the processed IQueryable.</returns>
 		public static LinqDataResult<T> ToLinqDataResult<T>(this IQueryable<T> queryable, int take, int skip, IEnumerable<Sort> sort, Filter filter)
 		{
-			// Filter the data first
-			queryable = Filter(queryable, filter);
+            var total = queryable.Count();
+            var filteredCount = total;
+			if (filter != null && filter.Logic != null)
+			{
+				// Filter the data first
+				queryable = Filter(queryable, filter);
 
-			// Calculate the total number of records (needed for paging)
-			var total = queryable.Count();	
+                // Calculate the total number of records (needed for paging)
+                filteredCount = queryable.Count();
+            }
+			
 
 			// Sort the data
 			queryable = Sort(queryable, sort);
@@ -44,7 +50,7 @@ namespace MZSimpleDynamicLinq.Extensions
 			{
 				Data = queryable.ToList(),
 				RecordsTotal = total,
-
+				RecordsFiltered=filteredCount,
 			};
 		}
 
@@ -52,14 +58,20 @@ namespace MZSimpleDynamicLinq.Extensions
 			where T:P
 			
 		{
-			// Filter the data first
-			queryable = Filter(queryable, filter);
+            var total = queryable.Count();
+            var filteredCount = total;
+            if (filter != null && filter.Logic != null)
+            {
+                // Filter the data first
+                queryable = Filter(queryable, filter);
 
-			// Calculate the total number of records (needed for paging)
-			var total = queryable.Count();
+                // Calculate the total number of records (needed for paging)
+                filteredCount = queryable.Count();
+            }
 
-			// Sort the data
-			queryable = Sort(queryable, sort);
+
+            // Sort the data
+            queryable = Sort(queryable, sort);
 
 			// Finally page the data
 			if (take > 0)
@@ -71,7 +83,7 @@ namespace MZSimpleDynamicLinq.Extensions
 			{
 				Data = queryable.ToList().Cast<P>(),
 				RecordsTotal = total,
-
+				RecordsFiltered = filteredCount,
 			};
 		}
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Linq.Dynamic;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace MZSimpleDynamicLinq.EFCoreExtensions
 {
@@ -26,11 +27,16 @@ namespace MZSimpleDynamicLinq.EFCoreExtensions
 		/// <returns>A LinqDataResult object populated from the processed IQueryable.</returns>
 		public static async Task<LinqDataResult<T>> ToLinqDataResultAsync<T>(this IQueryable<T> queryable, int take, int skip, IEnumerable<Sort> sort, Filter filter)
 		{
-			// Filter the data first
-			queryable = Filter(queryable, filter);
+            var total = await queryable.CountAsync();
+			var filteredCount = total;
+			if (filter != null && filter.Logic != null)
+			{
+				// Filter the data first
+				queryable = Filter(queryable, filter);
 
-			// Calculate the total number of records (needed for paging)
-			var total =await queryable.CountAsync();	
+				// Calculate the total number of records (needed for paging)
+				filteredCount = await queryable.CountAsync();
+			}
 
 			// Sort the data
 			queryable = Sort(queryable, sort);
@@ -45,7 +51,7 @@ namespace MZSimpleDynamicLinq.EFCoreExtensions
 			{
 				Data = await queryable.ToListAsync(),
 				RecordsTotal = total,
-
+				RecordsFiltered=filteredCount,
 			};
 		}
 
@@ -63,14 +69,19 @@ namespace MZSimpleDynamicLinq.EFCoreExtensions
 		public static async Task<LinqDataResult<P>> ToLinqDataResultAsync<T,P>(this IQueryable<T> queryable, int take, int skip, IEnumerable<Sort> sort, Filter filter)
 			where T : P
 		{
-			// Filter the data first
-			queryable = Filter(queryable, filter);
+            var total = await queryable.CountAsync();
+            var filteredCount = total;
+            if (filter != null && filter.Logic != null)
+            {
+                // Filter the data first
+                queryable = Filter(queryable, filter);
 
-			// Calculate the total number of records (needed for paging)
-			var total = await queryable.CountAsync();
+                // Calculate the total number of records (needed for paging)
+                filteredCount = await queryable.CountAsync();
+            }
 
-			// Sort the data
-			queryable = Sort(queryable, sort);
+            // Sort the data
+            queryable = Sort(queryable, sort);
 
 			// Finally page the data
 			if (take > 0)
@@ -82,7 +93,7 @@ namespace MZSimpleDynamicLinq.EFCoreExtensions
 			{
 				Data = (await queryable.ToListAsync()).Cast<P>(),
 				RecordsTotal = total,
-
+				RecordsFiltered = filteredCount,
 			};
 		}
 
