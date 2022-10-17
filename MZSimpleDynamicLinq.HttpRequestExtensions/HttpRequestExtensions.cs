@@ -8,6 +8,9 @@ namespace MZSimpleDynamicLinq.HttpRequestExtensions
 {
     public static class HttpRequestDataSourceExtension
     {
+
+        public static int MaximumItemsPerPage = 500;
+        public static int MaximumViewablePage = 50;
         public static LinqDataRequest ToLinqDataRequest(this HttpRequest request)
         {
 
@@ -16,8 +19,8 @@ namespace MZSimpleDynamicLinq.HttpRequestExtensions
             var length = request.Query["length"].FirstOrDefault();
 
             var searchValue = request.Query["search[value]"].FirstOrDefault();
-            int pageSize = length != null ? Convert.ToInt32(length) : 0;
-            int skip = start != null ? Convert.ToInt32(start) : 0;
+            int pageSize = length != null ? Math.Min( Convert.ToInt32(length), MaximumItemsPerPage) : MaximumItemsPerPage;
+            int skip = start != null ? Math.Min(Convert.ToInt32(start), MaximumViewablePage) : 0;
             int recordsTotal = 0;
 
             List<Sort> sorts = new List<Sort>();
@@ -43,7 +46,7 @@ namespace MZSimpleDynamicLinq.HttpRequestExtensions
             var fls = new List<Filter>();
             for (int i = 0; i < 20; i++)
             {
-                var filterColumnName = request.Query["columns[" + request.Query["order[" + i + "][column]"].FirstOrDefault() + "][name]"].FirstOrDefault();
+                var filterColumnName = request.Query["columns[" + i + "][name]"].FirstOrDefault();
                 var columnSearchable = request.Query["columns[" + i + "][searchable]"].FirstOrDefault();
                 var filterColumnValue = request.Query["columns[" + i + "][search][value]"].FirstOrDefault();
 
