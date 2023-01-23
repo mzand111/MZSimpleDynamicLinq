@@ -10,7 +10,7 @@ namespace MZSimpleDynamicLinq.HttpRequestExtensions
     {
 
         public static int MaximumItemsPerPage = 500;
-        public static int MaximumViewablePage = 50;
+        public static int MaximumViewablePage = 5000;
         public static LinqDataRequest ToLinqDataRequest(this HttpRequest request)
         {
 
