@@ -44,7 +44,7 @@ namespace MZSimpleDynamicLinq.Core
         /// </summary>
         private static readonly IDictionary<string, string> operators = new Dictionary<string, string>
         {
-            {"eq", "="},
+            {"eq", "=="},
             {"neq", "!="},
             {"lt", "<"},
             {"lte", "<="},
