@@ -8,7 +8,7 @@
     <PackageProjectUrl>https://github.com/mzand111/MZSimpleDynamicLinq</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mzand111/MZSimpleDynamicLinq</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
