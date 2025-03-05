@@ -11,6 +11,18 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MZSimpleDynamicLinq.HttpReq
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MZSimpleDynamicLinq.EFCoreExtensions", "MZSimpleDynamicLinq.EFCoreExtensions\MZSimpleDynamicLinq.EFCoreExtensions.csproj", "{B8F0403B-B762-4895-ADA9-A631AB16C646}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\manual_publish-mzsimpledynamiclinq-core.yaml = .github\workflows\manual_publish-mzsimpledynamiclinq-core.yaml
+		.github\workflows\manual_publish-mzsimpledynamiclinq-efcoreextensions.yaml = .github\workflows\manual_publish-mzsimpledynamiclinq-efcoreextensions.yaml
+		.github\workflows\manual_publish-mzsimpledynamiclinq-extensions.yaml = .github\workflows\manual_publish-mzsimpledynamiclinq-extensions.yaml
+		.github\workflows\manual_publish-mzsimpledynamiclinq-httprequestextensions.yaml = .github\workflows\manual_publish-mzsimpledynamiclinq-httprequestextensions.yaml
+		.github\workflows\publish-mzsimpledynamiclinq-core.yaml = .github\workflows\publish-mzsimpledynamiclinq-core.yaml
+		.github\workflows\publish-mzsimpledynamiclinq-efcoreextensions.yaml = .github\workflows\publish-mzsimpledynamiclinq-efcoreextensions.yaml
+		.github\workflows\publish-mzsimpledynamiclinq-extensions.yaml = .github\workflows\publish-mzsimpledynamiclinq-extensions.yaml
+		.github\workflows\publish-mzsimpledynamiclinq-httprequestextensions.yaml = .github\workflows\publish-mzsimpledynamiclinq-httprequestextensions.yaml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

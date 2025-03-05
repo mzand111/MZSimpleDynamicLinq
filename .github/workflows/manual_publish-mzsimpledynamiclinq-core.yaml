@@ -1,0 +1,31 @@
+name: Manually publish MZSimpleDynamicLinq.Core NuGet Package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '8.0.x'
+
+    - name: Restore dependencies
+      run: dotnet restore MZSimpleDynamicLinq.Core/MZSimpleDynamicLinq.Core.csproj
+
+    - name: Build
+      run: dotnet build --configuration Release MZSimpleDynamicLinq.Core/MZSimpleDynamicLinq.Core.csproj
+
+    - name: Pack
+      run: dotnet pack --configuration Release --output ./nupkg MZSimpleDynamicLinq.Core/MZSimpleDynamicLinq.Core.csproj
+
+    - name: Publish NuGet package
+      env:
+        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+      run: dotnet nuget push **/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate

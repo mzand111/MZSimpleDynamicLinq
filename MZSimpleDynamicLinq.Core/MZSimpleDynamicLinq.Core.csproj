@@ -8,11 +8,11 @@
     <PackageProjectUrl>https://github.com/mzand111/MZSimpleDynamicLinq</PackageProjectUrl>
     <RepositoryUrl>https://github.com/mzand111/MZSimpleDynamicLinq</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <Version>1.0.3</Version>
+    <Version>1.0.4</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
 </Project>
