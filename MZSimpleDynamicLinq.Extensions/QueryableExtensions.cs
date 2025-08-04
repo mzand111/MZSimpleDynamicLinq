@@ -95,11 +95,21 @@ namespace MZSimpleDynamicLinq.Extensions
 				// Collect a flat list of all filters
 				var filters = filter.GetFlat();
 
+				var distinctFilters = new List<Filter>();
+				foreach (var filterFilter in filters)
+				{
+					if (!distinctFilters.Any(uu=>
+						uu.Operator==filterFilter.Operator &&
+						uu.Filters==null &&
+						uu.Value.ToString() ==filterFilter.Value.ToString()))
+						distinctFilters.Add(filterFilter);
+				}
+
 				// Get all filter values as array (needed by the Where method of Dynamic Linq)
-				var values = filters.Select(f => f.Value).ToArray();
+				var values = distinctFilters.Select(f => f.Value).ToArray();
 
 				// generate expression e.g. Field1 = @0 And Field2 > @1
-				string predicate = filter.ToExpression(filters);
+				string predicate = filter.ToExpression(distinctFilters);
 
 				// Use the Where method of Dynamic Linq to filter the data
 				queryable = queryable.Where(predicate, values);
