@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MZSimpleDynamicLinq.Core;
 using System.Linq.Dynamic.Core;
+using System.Text.Json;
 
 namespace MZSimpleDynamicLinq.EFCoreExtensions
 {
@@ -181,19 +182,44 @@ namespace MZSimpleDynamicLinq.EFCoreExtensions
                 var filters = filter.GetFlat();
 
                 // Get all filter values as array (needed by the Where method of Dynamic Linq)
-                var values = filters.Select(f => f.Value).ToArray();
+                //var values = filters.Select(f => f.Value).ToArray();
+
+                List<object> valueList = new();
+                foreach (var f in filters)
+                {
+                    //This condition is to deal with JsonElements
+                    if (f.Value is JsonElement je)
+                    {
+                        valueList.Add(GetObjectValue(je));
+                    }
+                    else
+                    {
+                        valueList.Add(f.ToString());
+                    }
+                }
 
                 // generate expression e.g. Field1 = @0 And Field2 > @1
                 string predicate = filter.ToExpression(filters);
 
                 // Use the Where method of Dynamic Linq to filter the data
-                queryable = queryable.Where(predicate, values);
+                queryable = queryable.Where(predicate, valueList.ToArray());
             }
 
             return queryable;
         }
 
+        private static object GetObjectValue(System.Text.Json.JsonElement obj)
+        {
+            var typeOfObject = obj.ValueKind;
 
+            switch (typeOfObject)
+            {
+                case JsonValueKind.Number:
+                    return long.Parse(obj.ToString());
+                default:
+                    return obj.ToString();
+            }
+        }
 
         private static IQueryable<T> Sort<T>(IQueryable<T> queryable, IEnumerable<Sort> sort)
         {
