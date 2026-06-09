@@ -23,6 +23,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\publish-mzsimpledynamiclinq-httprequestextensions.yaml = .github\workflows\publish-mzsimpledynamiclinq-httprequestextensions.yaml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BC4B1B2F-DAEB-42F2-ABF6-15657E90D621}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MZSimpleDynamicLinq.Core.Test", "Tests\MZSimpleDynamicLinq.Core.Test\MZSimpleDynamicLinq.Core.Test.csproj", "{53AEE96D-19F1-8EE3-7451-2D21201C87D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MZSimpleDynamicLinq.EFCoreExtensions.Test", "Tests\MZSimpleDynamicLinq.EFCoreExtensions.Test\MZSimpleDynamicLinq.EFCoreExtensions.Test.csproj", "{2C04E993-44DC-4F76-9225-F70D013548C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,9 +51,21 @@ Global
 		{B8F0403B-B762-4895-ADA9-A631AB16C646}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8F0403B-B762-4895-ADA9-A631AB16C646}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8F0403B-B762-4895-ADA9-A631AB16C646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53AEE96D-19F1-8EE3-7451-2D21201C87D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53AEE96D-19F1-8EE3-7451-2D21201C87D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53AEE96D-19F1-8EE3-7451-2D21201C87D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53AEE96D-19F1-8EE3-7451-2D21201C87D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C04E993-44DC-4F76-9225-F70D013548C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C04E993-44DC-4F76-9225-F70D013548C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C04E993-44DC-4F76-9225-F70D013548C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C04E993-44DC-4F76-9225-F70D013548C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{53AEE96D-19F1-8EE3-7451-2D21201C87D5} = {BC4B1B2F-DAEB-42F2-ABF6-15657E90D621}
+		{2C04E993-44DC-4F76-9225-F70D013548C6} = {BC4B1B2F-DAEB-42F2-ABF6-15657E90D621}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C3DD79B4-4787-4BDA-AA22-C00C7AEA44EB}
