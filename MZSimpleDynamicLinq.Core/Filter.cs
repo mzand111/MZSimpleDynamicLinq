@@ -53,7 +53,9 @@ namespace MZSimpleDynamicLinq.Core
             {"startswith", "StartsWith"},
             {"endswith", "EndsWith"},
             {"contains", "Contains"},
-            {"doesnotcontain", "Contains"}
+            {"doesnotcontain", "Contains"},
+            {"isnull","" },
+            {"isnotnull","" }
         };
 
         /// <summary>
@@ -97,7 +99,27 @@ namespace MZSimpleDynamicLinq.Core
 
             int index = filters.IndexOf(this);
 
-            string comparison = operators[Operator];
+            // Normalize operator: remove spaces and use lower-case to support variants like "is null" and "isnull"
+            var opKey = (Operator ?? string.Empty).Replace(" ", "").ToLowerInvariant();
+
+            // Special handling for null checks (no parameter)
+            if (opKey == "isnull")
+            {
+                return string.Format("{0} == null", Field);
+            }
+
+            if (opKey == "isnotnull" || opKey == "isnotnull")
+            {
+                return string.Format("{0} != null", Field);
+            }
+
+            if (!operators.ContainsKey(opKey))
+            {
+                // Fallback to original operator key if normalization didn't match
+                opKey = Operator ?? string.Empty;
+            }
+
+            string comparison = operators[opKey];
 
             if (Operator == "doesnotcontain")
             {
